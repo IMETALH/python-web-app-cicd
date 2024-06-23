@@ -18,7 +18,7 @@ pip:
 
 lint:
 	flake8 --ignore=E501,E231 *.py
-	pylint --errors-only --disable=C0301 --disable=C0326 *.py
+	pylint --errors-only --disable=C0301 *.py
 
 unittest:
 	python -m unittest --verbose --failfast
