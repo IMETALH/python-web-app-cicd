@@ -79,5 +79,5 @@ jobs:
           ECR_REPOSITORY: test_pipeline_demo
           IMAGE_TAG: test_pipeline_image
         run: |
-          docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG python -m unittest discover --verbose --failfast
+          docker run --entrypoint python $ECR_REGISTRY/$ECR_REPOSITORY:latest -m unittest discover --verbose --failfast
           
