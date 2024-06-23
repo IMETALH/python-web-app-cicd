@@ -73,6 +73,11 @@ jobs:
       run: |
           docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       
-    - name: Run unit tests on the image
+    - name: Run unit tests in the container
+      env: 
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: test_pipeline_demo
+        IMAGE_TAG: test_pipeline_image
       run: |
           docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -m unittest discover --verbose --failfast
+          
