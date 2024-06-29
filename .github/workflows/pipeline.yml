@@ -69,7 +69,7 @@ jobs:
       env: 
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: python-web-app-cicd
-        IMAGE_TAG: python-web-app-image
+        IMAGE_TAG: python_web_app_image
       run: |
           docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       
