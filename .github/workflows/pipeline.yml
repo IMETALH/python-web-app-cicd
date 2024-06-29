@@ -94,6 +94,9 @@ jobs:
        ECS_SERVICE: python-web-app-cicd-service
        ECS_TD: .github/workflows/td.json
      steps:
+       - name: Chectout code
+         uses: actions/checkout@v2
+         
        - name: Configure AWS credentials
          uses: aws-actions/configure-aws-credentials@v4
          with:
