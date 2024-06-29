@@ -74,6 +74,7 @@ jobs:
           docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       
     - name: Run unit tests on the image
+      id: unit_tests
       env: 
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: python-web-app-cicd
@@ -108,7 +109,7 @@ jobs:
          with:
            task-definition: ${{ env.ECS_TD }}
            container-name: ${{ env.CONTAINER_NAME }}
-           image: ${{ needs.test_image.outputs.image }}
+           image: ${{ steps.test_image.outputs.image }}
 
        - name: Deploy Amazon ECS task definition
          uses: aws-actions/amazon-ecs-deploy-task-definition@v1
