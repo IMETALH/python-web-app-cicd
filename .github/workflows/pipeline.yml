@@ -52,6 +52,8 @@ jobs:
   test_image:
     needs: [build_image]
     runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.unit_tests.outputs.image }}
     steps:
     - name: Configure AWS credentials
 
@@ -104,12 +106,11 @@ jobs:
          uses: aws-actions/amazon-ecr-login@v2
 
        - name: Fill in the new image ID in the Amazon ECS task definition
-         id: task-def-1
          uses: aws-actions/amazon-ecs-render-task-definition@v1
          with:
            task-definition: ${{ env.ECS_TD }}
            container-name: ${{ env.CONTAINER_NAME }}
-           image: ${{ steps.test_image.outputs.image }}
+           image: ${{ needs.test_image.outputs.image }}
 
        - name: Deploy Amazon ECS task definition
          uses: aws-actions/amazon-ecs-deploy-task-definition@v1
