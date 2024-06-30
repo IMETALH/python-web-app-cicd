@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "TASK_DEFINITION_ARN",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:726625281818:task-definition/python-web-app-cicd_task",
     "containerDefinitions": [
         {
             "name": "python-web-app-cicd_container",
@@ -21,8 +21,8 @@
         }
     ],
     "family": "python-web-app-cicd_task",
-    "taskRoleArn": "TASK_ROLE_ARN",
-    "executionRoleArn": "EXECUTION_ROLE_ARN",
+    "taskRoleArn": "arn:aws:iam::726625281818:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::726625281818:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
     "volumes": [],
     "status": "ACTIVE",
@@ -54,6 +54,6 @@
     "cpu": "256",
     "memory": "512",
     "registeredAt": "2024-06-29T21:18:30.325Z",
-    "registeredBy": "REGISTERED_BY",
+    "registeredBy": "arn:aws:iam::726625281818:user/terraform",
     "tags": []
 }
