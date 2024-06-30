@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "python-web-app-cicd_container",
-            "image": "CONTAINER_IMAGE",
+            "image": "726625281818.dkr.ecr.us-east-1.amazonaws.com/python-web-app-cicd",
             "cpu": 256,
             "memory": 512,
             "portMappings": [
