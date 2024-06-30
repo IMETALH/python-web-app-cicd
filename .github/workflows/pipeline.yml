@@ -96,7 +96,7 @@ jobs:
      steps:
        - name: Chectout code
          uses: actions/checkout@v2
-         
+
        - name: Configure AWS credentials
          uses: aws-actions/configure-aws-credentials@v4
          with:
@@ -109,6 +109,7 @@ jobs:
          uses: aws-actions/amazon-ecr-login@v2
 
        - name: Fill in the new image ID in the Amazon ECS task definition
+         id: task-def-1
          uses: aws-actions/amazon-ecs-render-task-definition@v1
          with:
            task-definition: ${{ env.ECS_TD }}
