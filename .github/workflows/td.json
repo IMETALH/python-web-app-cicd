@@ -1,15 +1,15 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:726625281818:task-definition/python-web-app-cicd_task",
+    "taskDefinitionArn": "TASK_DEFINITION_ARN",
     "containerDefinitions": [
         {
             "name": "python-web-app-cicd_container",
-            "image": "726625281818.dkr.ecr.us-east-1.amazonaws.com/python-web-app-cicd",
+            "image": "CONTAINER_IMAGE",
             "cpu": 256,
             "memory": 512,
             "portMappings": [
                 {
-                    "containerPort": 80,
-                    "hostPort": 80,
+                    "containerPort": 8080,
+                    "hostPort": 8080,
                     "protocol": "tcp"
                 }
             ],
@@ -21,8 +21,8 @@
         }
     ],
     "family": "python-web-app-cicd_task",
-    "taskRoleArn": "arn:aws:iam::726625281818:role/ecsTaskExecutionRole",
-    "executionRoleArn": "arn:aws:iam::726625281818:role/ecsTaskExecutionRole",
+    "taskRoleArn": "TASK_ROLE_ARN",
+    "executionRoleArn": "EXECUTION_ROLE_ARN",
     "networkMode": "awsvpc",
     "volumes": [],
     "status": "ACTIVE",
@@ -53,7 +53,7 @@
     ],
     "cpu": "256",
     "memory": "512",
-    "registeredAt": "2024-07-01T11:58:10.112Z",
-    "registeredBy": "arn:aws:iam::726625281818:user/terraform",
+    "registeredAt": "2024-06-29T21:18:30.325Z",
+    "registeredBy": "REGISTERED_BY",
     "tags": []
 }
