@@ -1,0 +1,59 @@
+{
+    "taskDefinitionArn": "TASK_DEFINITION_ARN",
+    "containerDefinitions": [
+        {
+            "name": "python-web-app-cicd_container",
+            "image": "CONTAINER_IMAGE",
+            "cpu": 256,
+            "memory": 512,
+            "portMappings": [
+                {
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "systemControls": []
+        }
+    ],
+    "family": "python-web-app-cicd_task",
+    "taskRoleArn": "TASK_ROLE_ARN",
+    "executionRoleArn": "EXECUTION_ROLE_ARN",
+    "networkMode": "awsvpc",
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512",
+    "registeredAt": "2024-06-29T21:18:30.325Z",
+    "registeredBy": "REGISTERED_BY",
+    "tags": []
+}
