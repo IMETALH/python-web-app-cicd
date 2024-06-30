@@ -1,0 +1,37 @@
+name: Replace Environment Variable in JSON and Deploy to AWS ECS
+
+on: [push]
+
+jobs:
+  replace-env-var-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Replace environment variable in JSON
+        run: |
+          sed -i 's/TASK_DEFINITION_ARN/${{ secrets.TASK_DEFINITION_ARN }}/g' td.json
+          sed -i 's/CONTAINER_IMAGE/${{ secrets.CONTAINER_IMAGE }}/g' td.json
+          sed -i 's/TASK_ROLE_ARN/${{ secrets.TASK_ROLE_ARN }}/g' td.json
+          sed -i 's/EXECUTION_ROLE_ARN/${{ secrets.EXECUTION_ROLE_ARN }}/g' td.json
+          sed -i 's/REGISTERED_BY/${{ secrets.REGISTERED_BY }}/g' td.json
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      
+      - name: Register new ECS Task Definition
+        run: |
+          aws ecs register-task-definition --cli-input-json file://td.json
+      
+      # Optional: Update ECS Service with the new Task Definition
+      - name: Update ECS Service
+        run: |
+          # Extract the new task definition ARN
+          TASK_DEF_ARN=$(aws ecs register-task-definition --cli-input-json file://td.json | jq -r '.taskDefinition.taskDefinitionArn')
+          # Update the ECS service to use the new task definition
+          aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }}  --task-definition $TASK_DEF_ARN
