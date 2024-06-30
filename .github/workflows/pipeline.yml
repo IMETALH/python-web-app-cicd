@@ -89,7 +89,7 @@ jobs:
      needs: [test_image]
      runs-on: ubuntu-latest
      env:
-       ECS_CLUSTER: python-web-app-cicd
+       ECS_CLUSTER: python-web-app-cicd-cluster
        CONTAINER_NAME: python-web-app-cicd_container
        ECS_SERVICE: python-web-app-cicd-service
        ECS_TD: .github/workflows/td.json
