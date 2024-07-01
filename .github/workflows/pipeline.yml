@@ -83,7 +83,7 @@ jobs:
         IMAGE_TAG: latest
       run: |
         docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -m unittest discover --verbose --failfast
-        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $IMAGE_TAG
           
   deploy:
      needs: [test_image]
