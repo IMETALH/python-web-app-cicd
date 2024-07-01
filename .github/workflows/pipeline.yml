@@ -80,10 +80,10 @@ jobs:
       env: 
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: python-web-app-cicd
-        IMAGE_TAG: python_web_app_image
+        IMAGE_TAG: latest
       run: |
         docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -m unittest discover --verbose --failfast
-        echo "image=${{ steps.unit_tests.outputs.image }}" >> $GITHUB_OUTPUT
+        echo "image=${{ steps.unit_tests.outputs.image }}" >> $IMAGE_TAG
           
   deploy:
      needs: [test_image]
@@ -108,7 +108,7 @@ jobs:
          id: login-ecr
          uses: aws-actions/amazon-ecr-login@v2
 
-       - name: Fill in the new image ID in the Amazon ECS task definition
+       - name: Fill in the new tested image ID in the Amazon ECS task definition
          id: task-def-1
          uses: aws-actions/amazon-ecs-render-task-definition@v1
          with:
