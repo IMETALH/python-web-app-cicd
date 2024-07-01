@@ -83,7 +83,7 @@ jobs:
         IMAGE_TAG: python_web_app_image
       run: |
         docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -m unittest discover --verbose --failfast
-        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        echo "image=${{ steps.unit_tests.outputs.image }}" >> $GITHUB_OUTPUT
           
   deploy:
      needs: [test_image]
