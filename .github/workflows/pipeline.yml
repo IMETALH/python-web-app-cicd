@@ -52,8 +52,8 @@ jobs:
   test_image:
     needs: [build_image]
     runs-on: ubuntu-latest
-    outputs:
-      image: ${{ steps.unit_tests.outputs.image }}
+    # outputs:
+    #   image: ${{ steps.unit_tests.outputs.image }}
     steps:
     - name: Configure AWS credentials
 
